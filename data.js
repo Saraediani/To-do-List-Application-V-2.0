@@ -1,27 +1,13 @@
-/** Todos List*/
-const todos = [{
-        id: 1,
-        title: "Coding in Javascript",
-        description: "Working with functions in JavaScript",
-        completed: false,
-    },
-    {
-        id: 2,
-        title: "Cooking Supper",
-        description: "Preparing rice and chicken",
-        completed: false,
-    },
-    {
-        id: 3,
-        title: "Taking a walk",
-        description: "Easy time at the park",
-        completed: false,
-    },
-    {
-        id: 4,
-        title: "Watching Netflix",
-        description: "Enjoying the new premiered series",
-        completed: false,
-    },
-];
-module.exports = todos;
+const db = require("./connection.js");
+
+module.exports = class Data {
+    static getdata(res) {
+        const sql = "SELECT * FROM todo";
+        db.query(sql, function(err, results) {
+            if (err) {
+                throw err;
+            }
+            res.end(JSON.stringify(results));
+        });
+    }
+}
