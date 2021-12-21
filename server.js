@@ -1,7 +1,7 @@
 const http = require('http');
 // const Todos = require("./controller");
 const { getTasks, getTask } = require("./controller/tasksController.js");
-const port = 8080;
+const port = 3000;
 const server = http.createServer((req, res) => {
     if (req.url === "/api/todo" && req.method === "GET") {
         getTasks(req, res);

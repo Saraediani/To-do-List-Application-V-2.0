@@ -23,6 +23,7 @@ exports.createTask = async(req, res) => {
 
 exports.updateTask = async(req, res) => {
     let id = req.url.split("/")[3];
+
     console.log(id);
 }
 
