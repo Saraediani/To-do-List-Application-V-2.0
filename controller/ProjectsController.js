@@ -1,68 +1,68 @@
-const Task = require("../model/tasksModel.js");
+const project = require("../model/projectsModel.js");
 const { getData } = require("../helpers/hepler.js")
 
-exports.getTasks = async(req, res) => {
+exports.getProjects = async(req, res) => {
     try {
-        const task = await Task.getAll();
+        const projects = await project.getAll();
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(task));
+        res.end(JSON.stringify(projects));
     } catch (err) {
         throw err;
     }
 }
 
-exports.getTask = async(req, res) => {
+exports.getProject = async(req, res) => {
     let id = req.url.split("/")[3];
     try {
-        const task = await Task.getById(id);
+        const projects = await project.getById(id);
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(task));
+        res.end(JSON.stringify(projects));
     } catch (err) {
         throw err;
     }
 }
 
-exports.createTask = async(req, res) => {
+exports.createProject = async(req, res) => {
     try {
         const data = await getData(req);
-        const newtask = await Task.createTask(data);
+        const newprojects = await project.createProject(data);
         res.writeHead(201, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify(newtask));
+        return res.end(JSON.stringify(newprojects));
     } catch (error) {
         console.log(error);
     }
 }
 
 
-exports.updateTask = async(req, res) => {
+exports.updateProject = async(req, res) => {
     let id = req.url.split("/")[3];
 
     try {
         const data = await getData(req);
-        const updatetask = await Task.updateTask(data, id);
+        const updateprojects = await project.updateProject(data, id);
         res.writeHead(201, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify(updatetask));
+        return res.end(JSON.stringify(updateprojects));
     } catch (error) {
         console.log(error);
     }
 }
 
 
-exports.deleteTask = async(req, res) => {
+exports.deleteProject = async(req, res) => {
         let id = req.url.split("/")[3];
         try {
-            const task = await Task.deleteTask(id);
+            const projects = await project.deleteProject(id);
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(task));
+            res.end(JSON.stringify(projects));
         } catch (err) {
             throw err;
         }
     }
     // module.exports = {
-    //     getTasks,
+    //     getprojects,
     //     getById,
-    //     createTask,
-    //     updateTask,
-    //     deleteTask,
+    //     createproject,
+    //     updateproject,
+    //     deleteproject,
 
 // };
